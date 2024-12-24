@@ -44,7 +44,7 @@ export const DeleteTask =async (req,res)=>{
         {
             res.status(400).send("no tasks found");
         }
-        tasks = task.filter(task => task._id.toString() !== id);
+        tasks = tasks.filter(task => task._id.toString() !== id);
         res.status(201).json({tasks});
     } catch (error) {
             res.status(500).send("something went wrong");
