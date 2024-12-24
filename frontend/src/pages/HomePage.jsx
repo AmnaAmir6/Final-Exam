@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function HomePage() {
@@ -6,8 +6,8 @@ function HomePage() {
     const handleCreateTask =()=>{
         navigate("/create");
     }
-
-    useEffect(()=>{},[])
+const [tasks,setTasks]=useState([]);
+    useEffect(()=>{fetchData();},[])
     const fetchData = async()=>{
         try {
         const response = await axios.get("http://localhost:4000/task/task")
@@ -32,6 +32,9 @@ function HomePage() {
     <button className='bg-teal-500 rounded-lg p-4 px-8 hover:bg-teal-600'>
         Create
     </button>
+    {/* <div>
+        {tasks.map(task=>())}
+    </div> */}
     </>
   )
 }
