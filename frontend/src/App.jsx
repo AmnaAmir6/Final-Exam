@@ -1,17 +1,18 @@
 import { useEffect } from "react"
-import { BrowserRouter,Routes,Route } from "react-router-dom"
+import { BrowserRouter,Routes,Route, useNavigate } from "react-router-dom"
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import HomePage from "./pages/HomePage";
 import axios from "axios";
 import CreateTaskPage from "./pages/CreateTaskPage";
 
-function App() {
 
+function App() {
+const navigate=useNavigate();
   useEffect(()=>{
     handleLoginBack()
   },[]);
-
+  const user = localStorage.getItem("username");
   const handleLoginBack = async()=>{
     try {
       const Token = localStorage.getItem("Token");
@@ -36,7 +37,7 @@ function App() {
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage/>}/>
+        <Route path="/" element={ user?<HomePage/>: navigate("/login")}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/create" element={<CreateTaskPage/>}/>
