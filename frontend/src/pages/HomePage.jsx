@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function HomePage() {
     const navigate = useNavigate();
     const handleCreateTask =()=>{
         navigate("/create");
+    }
+
+    useEffect(()=>{},[])
+    const fetchData = async()=>{
+        try {
+        const response = await axios.get("http://localhost:4000/task/task")
+        console.log("response: " ,response.data);
+
+    } catch (error) {
+            console.log("error");
+    }
     }
   return (
     <>

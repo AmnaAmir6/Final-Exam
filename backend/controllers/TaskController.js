@@ -29,7 +29,7 @@ export const CreateTask =async (req,res)=>{
         name,description,dueDate
     })
     await task.save();
-    res.status(201).json({task});
+    res.status(201).json(task);
 } catch (error) {
         res.status(500).send("something went wrong");
 }

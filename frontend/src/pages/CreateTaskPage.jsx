@@ -36,7 +36,7 @@ catch(error)
     }
 
     
-    
+    console.log("on create task page.");
 
   return (
     <>
