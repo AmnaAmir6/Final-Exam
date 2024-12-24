@@ -8,7 +8,7 @@ import CreateTaskPage from "./pages/CreateTaskPage";
 
 
 function App() {
-const navigate=useNavigate();
+
   useEffect(()=>{
     handleLoginBack()
   },[]);
@@ -37,7 +37,7 @@ const navigate=useNavigate();
     <>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={ user?<HomePage/>: navigate("/login")}/>
+        <Route path="/" element={ user?<HomePage/>: <LoginPage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/signup" element={<SignupPage/>}/>
         <Route path="/create" element={<CreateTaskPage/>}/>
