@@ -24,7 +24,6 @@ const handleCreate = async(e) =>{
         description:FormData.description,
         dueDate:FormData.dueDate
     })
-   
   
     toast.success("Created Task");
     navigate("/");

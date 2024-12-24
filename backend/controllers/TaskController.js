@@ -20,7 +20,7 @@ export const CreateTask =async (req,res)=>{
 // }
     try {
     const {name,description,dueDate}=req.body;
-    const existingtask = Task.findOne({name});
+    const existingtask = await Task.findOne({name});
     if(existingtask)
     {
         res.status(400).send("this name for task already exists");
@@ -39,7 +39,7 @@ export const DeleteTask =async (req,res)=>{
     
     try {
         const{id}=req.params
-        const tasks = Task.find();
+        const tasks = await Task.find();
         if(!tasks)
         {
             res.status(400).send("no tasks found");
@@ -55,7 +55,7 @@ export const DeleteTask =async (req,res)=>{
 export const UpdateTask =async (req,res)=>{
     try {
         const {name,description,dueDate}=req.body;
-        const task = Task.findOne({name});
+        const task = await Task.findOne({name});
         if(!task)
         {
             res.status(400).send("this name task doesnt exists");
@@ -73,7 +73,7 @@ export const UpdateTask =async (req,res)=>{
 
 export const GetAllTask =async (req,res)=>{
     try {
-        const tasks = Task.find();
+        const tasks =await Task.find();
         if(!tasks)
         {
             res.status(400).send("no tasks found");
@@ -88,7 +88,7 @@ export const GetAllTask =async (req,res)=>{
 export const getTaskbyID =async (req,res)=>{
     try {
         const{id}=req.params
-        const task = Task.findById(id);
+        const task = await Task.findById(id);
         if(!task)
         {
             res.status(400).send("this name task doesn't exists");
