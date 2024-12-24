@@ -1,15 +1,51 @@
 import { useEffect } from "react"
-import toast from "react-hot-toast"
 import { BrowserRouter,Routes,Route } from "react-router-dom"
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import HomePage from "./pages/HomePage";
+import axios from "axios";
+import CreateTaskPage from "./pages/CreateTaskPage";
 
 function App() {
+
   useEffect(()=>{
-toast.success("Welcome");
-  },[])
+    handleLoginBack()
+  },[]);
+
+  const handleLoginBack = async()=>{
+    try {
+      const Token = localStorage.getItem("Token");
+      
+      if(!Token)return;
+
+      const res = await axios.get("http://localhost:4000/auth/loginBack",
+        {
+          headers:{
+            Authorization:`Bearer ${Token}`,
+          }
+        }
+      )
+      console.log("Username: ",res.data.username);
+      localStorage.setItem(res.data.username);
+    } catch (error) {
+      
+    }
+  }
+
   return (
-    <h1 className="text-3xl font-bold underline bg-slate-500">
+    <>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/signup" element={<SignupPage/>}/>
+        <Route path="/create" element={<CreateTaskPage/>}/>
+      </Routes>
+    </BrowserRouter>
+    {/* <h1 className="text-3xl font-bold underline bg-slate-500">
       Hello world!
-    </h1>
+    </h1> */}
+    </>
   )
 }
 
